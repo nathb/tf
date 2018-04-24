@@ -41,8 +41,8 @@ abstract class AppDatabase : RoomDatabase() {
 
         private fun insertShows() {
             instance.showDao().insert(
-                    Show("Mr Robot", "ts" , "es"),
-                    Show("Modern Family", "ts" , "es"))
+                    Show("Mr Robot", "Mr Robot" , "1871"),
+                    Show("Modern Family", "Modern Family" , "80"))
         }
     }
 }

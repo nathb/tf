@@ -1,16 +1,17 @@
 package com.nathb.tf.ui.presenter
 
-import com.nathb.tf.service.episode.TestEpisodeFetcher
+import com.nathb.tf.service.episode.TVMazeEpisodeFetcher
 import com.nathb.tf.ui.BasePresenterImpl
 import com.nathb.tf.ui.SyncPresenter
 import com.nathb.tf.ui.SyncView
 import io.reactivex.Flowable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class SyncPresenterImpl : BasePresenterImpl<SyncView>(), SyncPresenter {
 
     override fun sync() {
-        val episodeFetcher = TestEpisodeFetcher()
+        val episodeFetcher = TVMazeEpisodeFetcher()
         val episodesDisposable =
                 // Find all shows with their episodes
                 db.showWithEpisodesDao()
@@ -25,9 +26,12 @@ class SyncPresenterImpl : BasePresenterImpl<SyncView>(), SyncPresenter {
                             // Only include unsynced episodes
                             .filter { episode -> !showWithEpisodes.episodes.contains(episode) }
                 }
-                .observeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        { db.episodeDao().insert(it) },
+                        {
+                            episode -> Schedulers.io().scheduleDirect {
+                                db.episodeDao().insert(episode) }
+                        },
                         { v.onSyncError(it) },
                         { v.onSyncComplete() })
 

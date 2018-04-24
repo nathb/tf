@@ -9,7 +9,7 @@ import android.arch.persistence.room.Relation
 data class Show(
     var showTitle: String,
     var torrentSearchTerm: String,
-    var episodeSearchTerm: String) {
+    var tvMazeId: String) {
 
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0

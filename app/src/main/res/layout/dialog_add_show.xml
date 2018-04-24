@@ -10,7 +10,6 @@
     <TableRow style="@style/InputTableRow">
 
         <TextView
-            android:id="@+id/show_title_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dialog_label_show_title"
@@ -27,7 +26,6 @@
     <TableRow style="@style/InputTableRow">
 
         <TextView
-            android:id="@+id/torrent_search_term_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dialog_label_torrent_search_term"
@@ -44,14 +42,13 @@
     <TableRow style="@style/InputTableRow">
 
         <TextView
-            android:id="@+id/episode_search_term_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/dialog_label_episode_search_term"
+            android:text="@string/dialog_label_tv_maze_id"
             style="@style/InputLabel"/>
 
         <EditText
-            android:id="@+id/episode_search_term_input"
+            android:id="@+id/tv_maze_id_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/InputBox"/>

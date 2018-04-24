@@ -79,7 +79,7 @@ interface AddShowPresenter : BasePresenter<AddShowView> {
 }
 
 interface AddShowView : BaseView {
-    enum class Field { SHOW_TITLE, TORRENT_SEARCH_TERM, EPISODE_SEARCH_TERM }
+    enum class Field { SHOW_TITLE, TORRENT_SEARCH_TERM, TV_MAZE_ID }
     fun onInvalidFields(fields: Set<Field>)
     fun onSaveComplete()
 }

@@ -13,7 +13,7 @@ class AddShowPresenterImpl : BasePresenterImpl<AddShowView>(), AddShowPresenter 
         val invalidFields = mapOf(
                 AddShowView.Field.SHOW_TITLE to show.showTitle,
                 AddShowView.Field.TORRENT_SEARCH_TERM to show.torrentSearchTerm,
-                AddShowView.Field.EPISODE_SEARCH_TERM to show.episodeSearchTerm)
+                AddShowView.Field.TV_MAZE_ID to show.tvMazeId)
                 .filterValues { TextUtils.isEmpty(it) }
                 .keys
 

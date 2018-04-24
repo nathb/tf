@@ -19,10 +19,9 @@ class AddShowDialogFragment : DialogFragment(), AddShowView {
 
     private val addShowPresenter = AddShowPresenterImpl()
     private lateinit var fieldMap : Map<AddShowView.Field, EditText>
-    private lateinit var fieldsToUpdate : List<EditText>
     private lateinit var titleInput : EditText
     private lateinit var torrentSearchTermInput : EditText
-    private lateinit var episodeSearchTermInput : EditText
+    private lateinit var tvMazeIdInput : EditText
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         addShowPresenter.onViewCreated(this)
@@ -32,14 +31,12 @@ class AddShowDialogFragment : DialogFragment(), AddShowView {
 
         titleInput = view.show_title_input
         torrentSearchTermInput = view.torrent_search_term_input
-        episodeSearchTermInput = view.episode_search_term_input
+        tvMazeIdInput = view.tv_maze_id_input
 
         fieldMap = mapOf(
                 AddShowView.Field.SHOW_TITLE to titleInput,
                 AddShowView.Field.TORRENT_SEARCH_TERM to torrentSearchTermInput,
-                AddShowView.Field.EPISODE_SEARCH_TERM to episodeSearchTermInput)
-
-        fieldsToUpdate = listOf(torrentSearchTermInput, episodeSearchTermInput)
+                AddShowView.Field.TV_MAZE_ID to tvMazeIdInput)
 
         val dialog = AlertDialog.Builder(context)
                 .setTitle(R.string.dialog_add_show_title)
@@ -54,7 +51,7 @@ class AddShowDialogFragment : DialogFragment(), AddShowView {
             saveButton.setOnClickListener {
                 val show = Show(titleInput.text.toString(),
                         torrentSearchTermInput.text.toString(),
-                        episodeSearchTermInput.text.toString())
+                        tvMazeIdInput.text.toString())
                 addShowPresenter.save(show)
             }
         }
@@ -79,8 +76,8 @@ class AddShowDialogFragment : DialogFragment(), AddShowView {
     }
 
     /**
-     * Keep Torrent and Episode edit boxes in sync with Title
-     * input if not modified as they will most likely be the same
+     * Keep Torrent edit box in sync with Title input
+     * if not modified as they will most likely be the same
      */
     private val titleTextWatcher = object : TextWatcher {
 
@@ -94,10 +91,9 @@ class AddShowDialogFragment : DialogFragment(), AddShowView {
 
         override fun onTextChanged(newTitle: CharSequence?, start: Int, before: Int, count: Int) {
             newTitle?.let {
-                fieldsToUpdate.forEach {
-                    if (it.text.isEmpty() || it.text.toString() == previousTitle) {
-                        it.setText(newTitle)
-                    }
+                if (torrentSearchTermInput.text.isEmpty() ||
+                        torrentSearchTermInput.text.toString() == previousTitle) {
+                    torrentSearchTermInput.setText(newTitle)
                 }
             }
         }

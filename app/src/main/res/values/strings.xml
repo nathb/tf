@@ -21,7 +21,7 @@
     <string name="dialog_add_show_title">Add Show</string>
     <string name="dialog_label_show_title">Show Title:</string>
     <string name="dialog_label_torrent_search_term">Torrent Search Term:</string>
-    <string name="dialog_label_episode_search_term">Episode Search Term:</string>
+    <string name="dialog_label_tv_maze_id">TV Maze ID:</string>
 
     <!-- settings -->
     <string name="settings_label_email">Email Address</string>

@@ -42,6 +42,7 @@ class SearchFragment : Fragment(), SearchView, SyncView {
 
     override fun onSearchError(error: Throwable) {
         fragment_title.text = "Search Error $error"
+        dynamicFab.onSearchComplete()
     }
 
     override fun onSearchComplete() {
@@ -50,6 +51,7 @@ class SearchFragment : Fragment(), SearchView, SyncView {
 
     override fun onSyncError(error: Throwable) {
         fragment_title.text = "Sync Error $error"
+        dynamicFab.onSearchComplete()
     }
 
     override fun onSyncComplete() {

@@ -16,6 +16,7 @@ class SearchPresenterImpl : BasePresenterImpl<SearchView>(), SearchPresenter {
         val torrentDisposable = db.episodeWithShowDao()
             .findAllNonDownloadedEpisodes()
             .flattenAsFlowable { list -> list }
+            .subscribeOn(Schedulers.io())
             .flatMap {
                 Flowable.just(it)
                     // Subscribe each episode on its own thread to run in parallel

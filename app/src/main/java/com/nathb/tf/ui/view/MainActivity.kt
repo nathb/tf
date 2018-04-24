@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         private val fragments : Array<Pair<Fragment, PageType>> = arrayOf(
                 Pair(SearchFragment.newInstance(), PageType.SEARCH),
                 Pair(ShowsFragment.newInstance(), PageType.SHOWS),
-                Pair(BlankFragment.newInstance("C"), PageType.SETTINGS)
+                Pair(BlankFragment.newInstance(), PageType.SETTINGS)
         )
 
         override fun getItem(position: Int): Fragment {
